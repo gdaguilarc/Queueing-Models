@@ -12,6 +12,8 @@ import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Box from "@material-ui/core/Box";
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
 
 
 
@@ -34,10 +36,13 @@ const HomePage: React.FC<HomePageProps> = ({ history }) => {
         <Divider className={classes.divider} />
         <Card className={classes.card}>
           <CardContent>
-            <Grid
+            <Link component={RouterLink} to="/mm1">
+              <Grid
               container
               direction="row"
               justify="space-between"
+          
+              
             >
               <Avatar className={classes.redAvatar}>
                   <Icon>view_agenda</Icon>
@@ -47,48 +52,55 @@ const HomePage: React.FC<HomePageProps> = ({ history }) => {
               </Typography>
             
             </Grid>
-            <Divider  className={classes.dividersmall}/>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-            >
-              <Avatar className={classes.greenAvatar}>
-                  <Icon>view_agenda</Icon>
-              </Avatar>
-              <Typography className={classes.subtitles} gutterBottom>
-                Modelo M/M/s
-              </Typography>
+            </Link>
             
-            </Grid>
             <Divider className={classes.dividersmall} />
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-            >
-              <Avatar className={classes.blueAvatar}>
-                  <Icon>view_agenda</Icon>
-              </Avatar>
-              <Typography className={classes.subtitles}  gutterBottom>
-                Modelo M/M/s/K
-              </Typography>
-            
-            </Grid>
-            <Divider  className={classes.dividersmall}/>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-            >
-              <Avatar className={classes.yellowAvatar}>
-                  <Icon>view_agenda</Icon>
-              </Avatar>
-              <Typography className={classes.subtitles}  gutterBottom>
-                Modelo M/G/1
-              </Typography>
-            
-            </Grid>
+            <Link component={RouterLink} to="/mms">
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+              >
+                <Avatar className={classes.greenAvatar}>
+                    <Icon>view_agenda</Icon>
+                </Avatar>
+                <Typography className={classes.subtitles} gutterBottom>
+                  Modelo M/M/s
+                </Typography>
+              
+              </Grid>
+            </Link>
+            <Divider className={classes.dividersmall} />
+            <Link component={RouterLink} to="/mmk">
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+              >
+                <Avatar className={classes.blueAvatar}>
+                    <Icon>view_agenda</Icon>
+                </Avatar>
+                <Typography className={classes.subtitles}  gutterBottom>
+                  Modelo M/M/s/K
+                </Typography>
+              
+                </Grid>
+              </Link>
+            <Divider className={classes.dividersmall} />
+            <Link component={RouterLink} to="/mg1">
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+              >
+                <Avatar className={classes.yellowAvatar}>
+                    <Icon>view_agenda</Icon>
+                </Avatar>
+                <Typography className={classes.subtitles}  gutterBottom>
+                  Modelo M/G/1
+                </Typography>
+                </Grid>
+              </Link>
         </CardContent>
         </Card>
         </div>
