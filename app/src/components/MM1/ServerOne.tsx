@@ -5,6 +5,8 @@ import { History } from "history";
 
 import useStyles from "../Global/Styles";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -20,13 +22,17 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     const navBack = useCallback(() => {
       history.replace("/");
     }, [history]);
-    
+
 return (
     <Box className={classes.root}>
-     <IconButton size="medium" onClick={navBack}>
+      <Container maxWidth="xl">
+         <Typography variant="h4" className={classes.text}>
+          <IconButton size="medium" onClick={navBack}>
             <ArrowBackIosIcon fontSize="inherit" />
           </IconButton>
-      <h1>hola</h1>
+          Modelo M/M/1
+        </Typography>
+      </Container>
     </Box>
   );
 };

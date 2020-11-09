@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       maxWidth: "30rem",
-      margin: "9rem auto 0 auto", 
+      margin: "7rem auto 0 auto", 
     },
     dividersmall: {
       margin: "1.5rem 0rem !important"

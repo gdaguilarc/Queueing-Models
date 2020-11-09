@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     },
     text: {
-      fontFamily: "Montserrat-Bold",
+        color: theme.palette.primary.dark,
+        fontWeight: "bold"
     },
     gradient: {     
       background: "linear-gradient(90deg, rgba(59,89,153,1) 55%, rgba(69,97,157,1) 78%, rgba(95,120,173,0.9023810207676821) 100%)",
