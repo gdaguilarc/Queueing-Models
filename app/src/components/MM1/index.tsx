@@ -18,6 +18,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Fab from '@material-ui/core/Fab';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
 
 import MM1 from "../../core/classes/MM1";
 import { parse } from "path";
@@ -83,100 +89,127 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     <Box pt={4} className={classes.root}>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h4" className={classes.text}>
-              <IconButton size="medium" onClick={navBack}>
+          <Grid item xs={12} className={classes.gradientRed}  container
+                direction="row">
+            <IconButton size="medium" onClick={navBack}>
                 <ArrowBackIosIcon fontSize="inherit" />
               </IconButton>
-              Modelo M/M/1
+            <h1 className={classes.title}> Modelo M/M/1</h1>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography  variant="h4" color="inherit" className={classes.subtitles} >
+              Variables
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6" color="inherit">
-              VARIABLES
+          <Grid item xs={8}>
+            <Typography  variant="h4" color="inherit" className={classes.subtitles} >
+              Resultados
             </Typography>
+          </Grid>
+          <Grid item xs={12} direction="row" container justify="space-between">
+            <Grid item xs={4}  direction="row" container >
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                  label="Lambda"
+                  variant="outlined"
+                  className={classes.textfield}
+                  type="number"
+                  value={lambda}
+                  onChange={(e) => handleChange(e.target.value, LAMBDA)}
+                />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                  label="Miu"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={miu}
+                  onChange={(e) => handleChange(e.target.value, MIU)}
+                />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                  label="N"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={n}
+                  onChange={(e) => handleChange(e.target.value, N)}
+                />
+              </Grid>
+              <Grid item xs={6} className={classes.myPadding}>
+                <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
+                  Calcular
+                </Fab>
+              </Grid>
+              <Grid item xs={12} container >
+                <List className={classes.root}>
+                  <ListItem>
+                    <Avatar className={classes.redAvatar}>
+                      <Icon>check_box_outline_blank</Icon>
+                    </Avatar>
+                    <ListItemText primary="Ro" secondary={" " + state.ro} className={ classes.text}/>
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.blueAvatar}>
+                      <Icon>radio_button_checked</Icon>
+                    </Avatar>
+                    <ListItemText primary="LQ" secondary={" " + state.lq}/>
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.greenAvatar}> 
+                      <Icon>panorama_horizontal</Icon>
+                    </Avatar>
+                    <ListItemText primary="L" secondary={" " + state.l} />
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.yellowAvatar}> 
+                      <Icon>panorama_vertical</Icon>
+                    </Avatar>
+                    <ListItemText primary="W" secondary={" " + state.w} />
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.redAvatar}>
+                      <Icon>panorama_wide_angle</Icon>
+                    </Avatar>
+                    <ListItemText primary="WQ" secondary={" " + state.wq} />
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.blueAvatar}> 
+                      <Icon>panorama_fish_eye</Icon>
+                    </Avatar>
+                    <ListItemText primary="P0" secondary={" " + state.p0}/>
+                  </ListItem>
+                </List>
+              </Grid>
+            </Grid>
+
+
+            <Grid item xs={8}>
+              <TableContainer>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Pn</TableCell>
+                      <TableCell align="left">Probabilidad</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {items.map((item: number, index: number) => (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                          P{index}
+                        </TableCell>
+                        <TableCell align="left">{item}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+            </TableContainer>
+            </Grid>
           </Grid>
 
-          <Grid item xs={3}>
-            <TextField
-              label="Lambda"
-              variant="outlined"
-              className={classes.textfield}
-              type="number"
-              value={lambda}
-              onChange={(e) => handleChange(e.target.value, LAMBDA)}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              label="Miu"
-              variant="outlined"
-              type="number"
-              className={classes.textfield}
-              value={miu}
-              onChange={(e) => handleChange(e.target.value, MIU)}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              label="N"
-              variant="outlined"
-              type="number"
-              className={classes.textfield}
-              value={n}
-              onChange={(e) => handleChange(e.target.value, N)}
-            />
-          </Grid>
-          <Grid item xs={3} className={classes.centered}>
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.textfield}
-              onClick={handleCalculate}
-            >
-              CALCULAR
-            </Button>
-          </Grid>
-          <Grid item xs={6}>
-            RO: {" " + state.ro}
-          </Grid>
-          <Grid item xs={6}>
-            LQ: {" " + state.lq}
-          </Grid>
-          <Grid item xs={6}>
-            L: {" " + state.l}
-          </Grid>
-          <Grid item xs={6}>
-            W: {" " + state.w}
-          </Grid>
-          <Grid item xs={6}>
-            WQ: {" " + state.wq}
-          </Grid>
-          <Grid item xs={6}>
-            P0: {" " + state.p0}
-          </Grid>
-          <Grid item xs={12}>
-            <TableContainer>
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Pn</TableCell>
-                    <TableCell align="left">Probabilidad</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {items.map((item: number, index: number) => (
-                    <TableRow key={index}>
-                      <TableCell component="th" scope="row">
-                        P{index}
-                      </TableCell>
-                      <TableCell align="left">{item}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
         </Grid>
       </Container>
     </Box>
