@@ -13,21 +13,21 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     },
     text: {
-        color: theme.palette.primary.dark,
-        fontWeight: "bold"
+      color: theme.palette.primary.dark,
+      fontWeight: "bold",
     },
-    gradient: {     
-      background: "linear-gradient(90deg, rgba(59,89,153,1) 55%, rgba(69,97,157,1) 78%, rgba(95,120,173,0.9023810207676821) 100%)",
+    gradient: {
+      background:
+        "linear-gradient(90deg, rgba(59,89,153,1) 55%, rgba(69,97,157,1) 78%, rgba(95,120,173,0.9023810207676821) 100%)",
       height: "20rem",
       borderRadius: "0px",
-      padding: '50px 100px'
+      padding: "50px 100px",
     },
     cards: {
       borderRadius: "0px",
     },
     title: {
       color: "#f0f4fb",
-
     },
     subtitles: {
       color: theme.palette.secondary.light,
@@ -35,30 +35,51 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     divider: {
       height: "5px !important",
-      backgroundColor:  "#f0f4fb !important"
+      backgroundColor: "#f0f4fb !important",
     },
     icon: {
-    margin: 1 * 2,
+      margin: 1 * 2,
     },
     card: {
       maxWidth: "30rem",
-      margin: "9rem auto 0 auto", 
+      margin: "9rem auto 0 auto",
     },
     dividersmall: {
-      margin: "1.5rem 0rem !important"
+      margin: "1.5rem 0rem !important",
     },
     blueAvatar: {
-      backgroundColor: "#4285f4 !important"
-    },  
+      backgroundColor: "#4285f4 !important",
+    },
     redAvatar: {
-      backgroundColor: "#ea4335 !important"
+      backgroundColor: "#ea4335 !important",
     },
     yellowAvatar: {
-      backgroundColor: "#fbbc05 !important"
-    },  
+      backgroundColor: "#fbbc05 !important",
+    },
     greenAvatar: {
-      backgroundColor: "#34a853 !important"
-    }  
+      backgroundColor: "#34a853 !important",
+    },
+
+    // CLASSES DAVIDCIN ;)
+    textfield: {
+      width: "100%",
+    },
+    cardTemp: {
+      height: "214px",
+    },
+    centeredCard: {
+      width: "100%",
+      height: "214px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    centered: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   })
 );
 
