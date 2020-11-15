@@ -47,7 +47,7 @@ const getHistory = (sim: MG1, n: number) => {
   return arr;
 };
 
-const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
+const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
   const classes = useStyles();
   const [lambda, setLambda] = useState(0);
   const [items, setItems] = useState<number[]>([]);
@@ -73,6 +73,13 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     if (type === LAMBDA) setLambda(parsedNum);
     if (type === MIU) setMiu(parsedNum);
     if (type === N) setN(parsedNum);
+  };
+
+  const handleStdChange = (n: string, type: Input) => {
+    if (!n) return;
+
+    const parsedNum = parseFloat(n);
+    if (parsedNum < 0) return;
     if (type === STD) setDev(parsedNum);
   };
 
@@ -147,7 +154,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                     type="number"
                     className={classes.textfield}
                     value={dev}
-                    onChange={(e) => handleChange(e.target.value, STD)}
+                    onChange={(e) => handleStdChange(e.target.value, STD)}
                 />
               </Grid>
               <Grid item xs={6} className={classes.myPadding}>
@@ -228,4 +235,4 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
   );
 };
 
-export default ServerOne;
+export default ServerFive;
