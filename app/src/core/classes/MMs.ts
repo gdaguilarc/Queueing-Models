@@ -22,30 +22,22 @@ class MMs extends Model implements IModel{
         this.s = s
     }
 
-    calculateVars():number {
+    calculateVars(): any {
         this.ro = this.lambda / (this.s * this.miu)
-        this.lq = (this.p0 * ((this.lambda / this.miu) ** this.s) * this.ro) / (factorial(this.s) * ((1 - this.ro) ** 2))
-        this.l = this.lq + (this.lambda / this.miu)
         const result = sum(this.s, this.lambda, this.miu)
         this.p0 = 1 / (result + ((((this.lambda / this.miu) ** this.s) / factorial(this.s)) * (1 / (1 - (this.lambda / (this.s * this.miu))))))
-        return 0
-    }
-
-    getWq(t:number):number {
-        if(t >= 0) {
-            const e = Math.E ** (-this.s * this.miu * t * (1 - this.ro))
-            this.wq = ((((this.s * this.ro) ** this.s) * this.p0) / (factorial(this.s) * (1 - this.ro))) * e
-            return this.wq
-        } else {
-            return -1
+        this.lq = (this.p0 * ((this.lambda / this.miu) ** this.s) * this.ro) / (factorial(this.s) * ((1 - this.ro) ** 2))
+        this.l = this.lq + (this.lambda / this.miu)
+        this.wq = this.lq / this.lambda
+        this.w = this.wq + (1 / this.miu)
+        return {
+            ro: this.ro,
+            p0: this.p0,
+            lq: this.lq,
+            l: this.l,
+            wq: this.wq,
+            w: this.w
         }
-    }
-
-    getW(t:number):number {
-        const e = Math.E ** (-this.miu * t)
-        const e2 = Math.E ** (-this.miu * t * (this.s - 1 - this.s * this.ro))
-        this.w = e * (1 + (((((this.s * this.ro) ** this.s) * this.p0) * (1 - e2)) / (factorial(this.s) * (1- this.ro) * (this.s - 1 - (this.s * this.ro)))))
-        return this.w
     }
 
     getPn(n:number):number {
@@ -56,10 +48,14 @@ class MMs extends Model implements IModel{
                     (
                         (this.lambda / this.miu) ** n
                     ) 
-                    / (factorial(this.s)) * (this.s ** (n - this.s))
+                    / ((factorial(this.s)) * (this.s ** (n - this.s)))
                    )* this.p0
         }
         return -1
+    }
+
+    getTotalCost(cw:number, cs:number, lq:number, s:number): number {
+        return ((lq * cw) + (s * cs))
     }
 
 }
