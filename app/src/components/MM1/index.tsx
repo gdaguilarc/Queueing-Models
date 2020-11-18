@@ -18,12 +18,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Fab from '@material-ui/core/Fab';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Avatar from '@material-ui/core/Avatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Icon from '@material-ui/core/Icon';
+import Fab from "@material-ui/core/Fab";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Avatar from "@material-ui/core/Avatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import Icon from "@material-ui/core/Icon";
 
 import MM1 from "../../core/classes/MM1";
 import { parse } from "path";
@@ -31,8 +31,10 @@ import { parse } from "path";
 const LAMBDA = "LAMBDA";
 const MIU = "MIU";
 const N = "N";
+const CW = "CW";
+const CS = "CS";
 
-type Input = "LAMBDA" | "MIU" | "N";
+type Input = "LAMBDA" | "MIU" | "N" | "CW" | "CS";
 
 interface ServerOneProps {
   history: History;
@@ -53,6 +55,10 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
   const [items, setItems] = useState<number[]>([]);
   const [miu, setMiu] = useState(0);
   const [n, setN] = useState(0);
+  const [cw, setCw] = useState(0);
+  const [cs, setCs] = useState(0);
+  const [total, setTotal] = useState(0);
+
   const [state, setState] = useState({
     ro: 0,
     l: 0,
@@ -72,6 +78,8 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     if (type === LAMBDA) setLambda(parsedNum);
     if (type === MIU) setMiu(parsedNum);
     if (type === N) setN(parsedNum);
+    if (type === CW) setCw(parsedNum);
+    if (type === CS) setCs(parsedNum);
   };
 
   const handleCalculate = () => {
@@ -79,6 +87,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     const res = sim.calculateVars();
     setState(res);
     setItems(getHistory(sim, n));
+    setTotal(sim.getTotalCost(cw, cs, res.lq));
   };
 
   const navBack = useCallback(() => {
@@ -89,26 +98,39 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     <Box pt={4} className={classes.root}>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={12} className={classes.gradientRed}  container
-                direction="row">
+          <Grid
+            item
+            xs={12}
+            className={classes.gradientRed}
+            container
+            direction="row"
+          >
             <IconButton size="medium" onClick={navBack}>
-                <ArrowBackIosIcon fontSize="inherit" />
-              </IconButton>
+              <ArrowBackIosIcon fontSize="inherit" />
+            </IconButton>
             <h1 className={classes.title}> Modelo M/M/1</h1>
           </Grid>
           <Grid item xs={4}>
-            <Typography  variant="h4" color="inherit" className={classes.subtitles} >
+            <Typography
+              variant="h4"
+              color="inherit"
+              className={classes.subtitles}
+            >
               Variables
             </Typography>
           </Grid>
           <Grid item xs={8}>
-            <Typography  variant="h4" color="inherit" className={classes.subtitles} >
+            <Typography
+              variant="h4"
+              color="inherit"
+              className={classes.subtitles}
+            >
               Resultados
             </Typography>
           </Grid>
           <Grid item xs={12} direction="row" container justify="space-between">
-            <Grid item xs={4}  direction="row" container >
-              <Grid item xs={6}  className={classes.myPadding}>
+            <Grid item xs={4} direction="row" container>
+              <Grid item xs={6} className={classes.myPadding}>
                 <TextField
                   label="Lambda"
                   variant="outlined"
@@ -118,7 +140,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   onChange={(e) => handleChange(e.target.value, LAMBDA)}
                 />
               </Grid>
-              <Grid item xs={6}  className={classes.myPadding}>
+              <Grid item xs={6} className={classes.myPadding}>
                 <TextField
                   label="Miu"
                   variant="outlined"
@@ -128,7 +150,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   onChange={(e) => handleChange(e.target.value, MIU)}
                 />
               </Grid>
-              <Grid item xs={6}  className={classes.myPadding}>
+              <Grid item xs={6} className={classes.myPadding}>
                 <TextField
                   label="N"
                   variant="outlined"
@@ -137,34 +159,62 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   value={n}
                   onChange={(e) => handleChange(e.target.value, N)}
                 />
+              </Grid>{" "}
+              <Grid item xs={6} className={classes.myPadding}>
+                <TextField
+                  label="CW"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={cw}
+                  onChange={(e) => handleChange(e.target.value, CW)}
+                />
+              </Grid>{" "}
+              <Grid item xs={6} className={classes.myPadding}>
+                <TextField
+                  label="CS"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={cs}
+                  onChange={(e) => handleChange(e.target.value, CS)}
+                />
               </Grid>
               <Grid item xs={6} className={classes.myPadding}>
-                <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
+                <Fab
+                  variant="extended"
+                  onClick={handleCalculate}
+                  className={classes.myBtn}
+                >
                   Calcular
                 </Fab>
               </Grid>
-              <Grid item xs={12} container >
+              <Grid item xs={12} container>
                 <List className={classes.root}>
                   <ListItem>
                     <Avatar className={classes.redAvatar}>
                       <Icon>check_box_outline_blank</Icon>
                     </Avatar>
-                    <ListItemText primary="Ro" secondary={" " + state.ro} className={ classes.text}/>
+                    <ListItemText
+                      primary="Ro"
+                      secondary={" " + state.ro}
+                      className={classes.text}
+                    />
                   </ListItem>
                   <ListItem>
                     <Avatar className={classes.blueAvatar}>
                       <Icon>radio_button_checked</Icon>
                     </Avatar>
-                    <ListItemText primary="LQ" secondary={" " + state.lq}/>
+                    <ListItemText primary="LQ" secondary={" " + state.lq} />
                   </ListItem>
                   <ListItem>
-                    <Avatar className={classes.greenAvatar}> 
+                    <Avatar className={classes.greenAvatar}>
                       <Icon>panorama_horizontal</Icon>
                     </Avatar>
                     <ListItemText primary="L" secondary={" " + state.l} />
                   </ListItem>
                   <ListItem>
-                    <Avatar className={classes.yellowAvatar}> 
+                    <Avatar className={classes.yellowAvatar}>
                       <Icon>panorama_vertical</Icon>
                     </Avatar>
                     <ListItemText primary="W" secondary={" " + state.w} />
@@ -176,15 +226,20 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                     <ListItemText primary="WQ" secondary={" " + state.wq} />
                   </ListItem>
                   <ListItem>
-                    <Avatar className={classes.blueAvatar}> 
+                    <Avatar className={classes.blueAvatar}>
                       <Icon>panorama_fish_eye</Icon>
                     </Avatar>
-                    <ListItemText primary="P0" secondary={" " + state.p0}/>
+                    <ListItemText primary="P0" secondary={" " + state.p0} />
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.blueAvatar}>
+                      <Icon>panorama_fish_eye</Icon>
+                    </Avatar>
+                    <ListItemText primary="Cost" secondary={" " + total} />
                   </ListItem>
                 </List>
               </Grid>
             </Grid>
-
 
             <Grid item xs={8}>
               <TableContainer>
@@ -206,10 +261,9 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                     ))}
                   </TableBody>
                 </Table>
-            </TableContainer>
+              </TableContainer>
             </Grid>
           </Grid>
-
         </Grid>
       </Container>
     </Box>

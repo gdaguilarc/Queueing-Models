@@ -41,6 +41,10 @@ class MM1 extends Model implements IModel {
   getPn(n: number): number {
     return this.ro ** n * this.p0;
   }
+
+  getTotalCost(cw: number, cs: number, lq: number): number {
+    return lq * cw + cs;
+  }
 }
 
 export default MM1;
