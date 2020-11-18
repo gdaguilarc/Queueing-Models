@@ -39,7 +39,7 @@ class MG1 extends Model implements IModel{
     }
 
     getPn(n: number): number {
-        return (this.ro * this.ro) * this.p0;
+        return (this.ro ** n) * this.p0;
     }
 
     getTotalCost(cw:number, cs:number): number {
