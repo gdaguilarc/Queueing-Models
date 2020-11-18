@@ -33,8 +33,10 @@ const MIU = "MIU";
 const N = "N";
 const K = "K";
 const S = "S";
+const CS = "CS";
+const CW = "CW";
 
-type Input = "LAMBDA" | "MIU" | "N" | "K" | "S";
+type Input = "LAMBDA" | "MIU" | "N" | "K" | "S" | "CW" | "CS";
 
 interface ServerOneProps {
   history: History;
@@ -57,6 +59,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
   const [n, setN] = useState(0);
   const [k, setK] = useState(0);
   const [s, setS] = useState(0);
+  const [cw, setCw] = useState(0);
+  const [cs, setCs] = useState(0);
   const [state, setState] = useState({
     ro: 0,
     l: 0,
@@ -64,6 +68,7 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
     wq: 0,
     w: 0,
     p0: 0,
+    totalCost: 0,
   });
 
   // useEffect(() => {}, []);
@@ -78,6 +83,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
     if (type === N) setN(parsedNum);
     if (type === S) setS(parsedNum);
     if (type === K) setK(parsedNum);
+    if (type === CW) setCw(parsedNum);
+    if (type === CS) setCs(parsedNum);
   };
 
   const handleCalculate = () => {
@@ -86,6 +93,15 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
     setState(res);
     setItems(getHistory(sim, n));
   };
+
+  const handleCostCalculation = () => {
+    const sim: MMsK = new MMsK(lambda, miu, s, k);
+    const totalCost = sim.getTotalCost(cw, cs, state.lq, s);
+    setState({
+      ...state,
+      totalCost,
+    })
+  }
 
   const navBack = useCallback(() => {
     history.replace("/");
@@ -164,9 +180,34 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   onChange={(e) => handleChange(e.target.value, N)}
                 />
               </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                  label="CW"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={cw}
+                  onChange={(e) => handleChange(e.target.value, CW)}
+                />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                  label="CS"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={cs}
+                  onChange={(e) => handleChange(e.target.value, CS)}
+                />
+              </Grid>
               <Grid item xs={6} className={classes.myPadding}>
                 <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
                   Calcular
+                </Fab>
+              </Grid>
+              <Grid item xs={6} className={classes.myPadding}>
+                <Fab variant="extended" onClick={handleCostCalculation} className={classes.myBtn}  >
+                  Costo Total
                 </Fab>
               </Grid>
               <Grid item xs={12} container >
@@ -206,6 +247,12 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                       <Icon>panorama_fish_eye</Icon>
                     </Avatar>
                     <ListItemText primary="P0" secondary={" " + state.p0}/>
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.blueAvatar}> 
+                      <Icon>panorama_fish_eye</Icon>
+                    </Avatar>
+                    <ListItemText primary="CT" secondary={" " + state.totalCost}/>
                   </ListItem>
                 </List>
               </Grid>

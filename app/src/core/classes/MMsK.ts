@@ -67,6 +67,10 @@ class MMsK extends Model implements IModel{
         return 0;
     }
 
+    getTotalCost(cw:number, cs:number, lq:number, s:number): number {
+        return ((lq * cw) + (s * cs))
+    }
+
 }
 
 export default MMsK
