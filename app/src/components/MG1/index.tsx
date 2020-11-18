@@ -31,8 +31,10 @@ const LAMBDA = "LAMBDA";
 const MIU = "MIU";
 const STD = "STD";
 const N = "N";
+const CS = "CS";
+const CW = "CW";
 
-type Input = "LAMBDA" | "MIU" | "STD" | "N";
+type Input = "LAMBDA" | "MIU" | "STD" | "N" | "CS" | "CW";
 
 interface ServerOneProps {
   history: History;
@@ -52,6 +54,8 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
   const [lambda, setLambda] = useState(0);
   const [items, setItems] = useState<number[]>([]);
   const [miu, setMiu] = useState(0);
+  const [cw, setCw] = useState(0);
+  const [cs, setCs] = useState(0);
   const [n, setN] = useState(0);
   const [dev, setDev] = useState(0);
   const [state, setState] = useState({
@@ -61,6 +65,7 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
     wq: 0,
     w: 0,
     p0: 0,
+    totalCost: 0
   });
 
   // useEffect(() => {}, []);
@@ -73,6 +78,8 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
     if (type === LAMBDA) setLambda(parsedNum);
     if (type === MIU) setMiu(parsedNum);
     if (type === N) setN(parsedNum);
+    if (type === CW) setCw(parsedNum);
+    if (type === CS) setCs(parsedNum);
   };
 
   const handleStdChange = (n: string, type: Input) => {
@@ -90,6 +97,15 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
     setItems(getHistory(sim, n));
   };
 
+  const handleCostCalculation = () => {
+    const sim: MG1 = new MG1(lambda, miu, dev);
+    const totalCost = sim.getTotalCost(cw, cs);
+    setState({
+      ...state,
+      totalCost
+    })
+  };
+
   const navBack = useCallback(() => {
     history.replace("/");
   }, [history]);
@@ -103,7 +119,7 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
             <IconButton size="medium" onClick={navBack}>
                 <ArrowBackIosIcon fontSize="inherit" />
               </IconButton>
-            <h1 className={classes.title}> Modelo M/M/1</h1>
+            <h1 className={classes.title}> Modelo M/G/1</h1>
           </Grid>
           <Grid item xs={4}>
             <Typography  variant="h4" color="inherit" className={classes.subtitles} >
@@ -157,9 +173,34 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
                     onChange={(e) => handleStdChange(e.target.value, STD)}
                 />
               </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                    label="CW"
+                    variant="outlined"
+                    type="number"
+                    className={classes.textfield}
+                    value={cw}
+                    onChange={(e) => handleChange(e.target.value, CW)}
+                />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <TextField
+                    label="CS"
+                    variant="outlined"
+                    type="number"
+                    className={classes.textfield}
+                    value={cs}
+                    onChange={(e) => handleChange(e.target.value, CS)}
+                />
+              </Grid>
               <Grid item xs={6} className={classes.myPadding}>
                 <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
                   Calcular
+                </Fab>
+              </Grid>
+              <Grid item xs={6} className={classes.myPadding}>
+                <Fab variant="extended" onClick={handleCostCalculation} className={classes.myBtn}  >
+                  Costo Total
                 </Fab>
               </Grid>
               <Grid item xs={12} container >
@@ -199,6 +240,12 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
                       <Icon>panorama_fish_eye</Icon>
                     </Avatar>
                     <ListItemText primary="P0" secondary={" " + state.p0}/>
+                  </ListItem>
+                  <ListItem>
+                    <Avatar className={classes.blueAvatar}>
+                      <Icon>panorama_fish_eye</Icon>
+                    </Avatar>
+                    <ListItemText primary="CT" secondary={" " + state.totalCost}/>
                   </ListItem>
                 </List>
               </Grid>
