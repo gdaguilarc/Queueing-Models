@@ -5,6 +5,8 @@ import "./App.css";
 import HomePage from "./components/HomePage";
 import ServerOne from './components/MM1'
 import ServerK from './components/MMsK'
+import MG1 from "./components/MG1";
+import ServerS from './components/MMs'
 
 function App() {
   return (
@@ -13,9 +15,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/mm1" component={ServerOne} />
-        <Route exact path="/mms" component={ServerOne} />
         <Route exact path="/mmk" component={ServerK} />
-        <Route exact path="/mg1" component={ServerOne} />
+        <Route exact path="/mms" component={ServerS} />
+        <Route exact path="/mg1" component={MG1} />
       </Switch>
     </HashRouter>
   );

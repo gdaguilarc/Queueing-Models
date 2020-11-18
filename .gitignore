@@ -105,3 +105,6 @@ dist
 
 # Mac DS Store Folder
 .DS_Store
+
+# WebStorm IDE Settings
+.idea
