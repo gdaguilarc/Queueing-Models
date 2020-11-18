@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "queue-theory",
+  "version": "1.0.0",
   "private": true,
   "description": "Queue Theory",
   "author": "David Aguilar",
