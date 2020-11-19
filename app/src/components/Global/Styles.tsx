@@ -54,16 +54,16 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "5px"
     },
     redAvatar: {
-      backgroundColor: "#484b67 !important"
+      backgroundColor: "#4e69a2 !important"
     },
     yellowAvatar: {
-      backgroundColor: "#5c5f78 !important"
+      backgroundColor: "#627aac !important"
     },  
     greenAvatar: {
-      backgroundColor: "#707389 !important"
+      backgroundColor: "#758ab6 !important"
     },
     blueAvatar: {
-      backgroundColor: "#85879a !important"
+      backgroundColor: "#899bc1 !important"
     }, 
 
     card: {
