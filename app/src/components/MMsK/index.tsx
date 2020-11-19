@@ -139,6 +139,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={lambda}
                   onChange={(e) => handleChange(e.target.value, LAMBDA)}
                 />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <TextField
                   label="Miu"
                   variant="outlined"
@@ -147,6 +149,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={miu}
                   onChange={(e) => handleChange(e.target.value, MIU)}
                 />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <TextField
                   label="K"
                   variant="outlined"
@@ -155,9 +159,6 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={k}
                   onChange={(e) => handleChange(e.target.value, K)}
                 />
-                <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
-                  Calcular
-                </Fab>
               </Grid>
 
               <Grid item xs={6}  className={classes.myPadding}>
@@ -169,6 +170,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={s}
                   onChange={(e) => handleChange(e.target.value, S)}
                 />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <TextField
                   label="N"
                   variant="outlined"
@@ -177,6 +180,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={n}
                   onChange={(e) => handleChange(e.target.value, N)}
                 />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <TextField
                   label="CW"
                   variant="outlined"
@@ -185,6 +190,8 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={cw}
                   onChange={(e) => handleChange(e.target.value, CW)}
                 /> 
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <TextField
                   label="CS"
                   variant="outlined"
@@ -193,9 +200,17 @@ const ServerK: React.FC<ServerOneProps> = ({ history }) => {
                   value={cs}
                   onChange={(e) => handleChange(e.target.value, CS)}
                 />
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
+                <Fab variant="extended" onClick={handleCalculate} className={classes.myBtn}  >
+                  Calcular
+                </Fab>
+              </Grid>
+              <Grid item xs={6}  className={classes.myPadding}>
                 <Fab variant="extended" onClick={handleCostCalculation} className={classes.myBtn}  >
                   Costo Total
                 </Fab>
+              
               </Grid>
 
               <Grid item xs={12} container >

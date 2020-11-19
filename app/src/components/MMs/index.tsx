@@ -122,6 +122,8 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
               Resultados
             </Typography>
           </Grid>
+
+
           <Grid item xs={12} direction="row" container justify="space-between">
             <Grid item xs={4}  direction="row" container >
               <Grid item xs={6}  className={classes.myPadding}>
@@ -266,7 +268,6 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
             </TableContainer>
             </Grid>
           </Grid>
-
         </Grid>
       </Container>
     </Box>
