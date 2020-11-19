@@ -22,6 +22,24 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "50px 100px",
       width: "100%",
     },
+    gradientBlue: {
+      background:
+        "linear-gradient(90deg, rgba(66,133,244,1) 64%, rgba(117,162,236,1) 82%, rgba(160,191,242,1) 100%)",
+      padding: "50px 100px",
+      width: "100%",
+    },
+    gradientGreen: {
+      background:
+        "linear-gradient(90deg, rgba(52,168,83,1) 64%, rgba(89,200,119,1) 82%, rgba(128,219,152,1) 100%)",
+      padding: "50px 100px",
+      width: "100%",
+    },
+    gradientYellow: {
+      background:
+        "linear-gradient(90deg, rgba(251,188,5,1) 64%, rgba(242,199,74,1) 82%, rgba(250,233,182,0.9920168751094187) 100%)",
+      padding: "50px 100px",
+      width: "100%",
+    },
     title: {
       color: "#f0f4fb",
       margin: "1rem auto",
@@ -36,16 +54,16 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "5px"
     },
     redAvatar: {
-      backgroundColor: "#ea4335 !important"
+      backgroundColor: "#484b67 !important"
     },
     yellowAvatar: {
-      backgroundColor: "#fbbc05 !important"
+      backgroundColor: "#5c5f78 !important"
     },  
     greenAvatar: {
-      backgroundColor: "#34a853 !important"
+      backgroundColor: "#707389 !important"
     },
     blueAvatar: {
-      backgroundColor: "#4285f4 !important"
+      backgroundColor: "#85879a !important"
     }, 
 
     card: {

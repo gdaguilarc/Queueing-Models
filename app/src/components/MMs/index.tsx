@@ -105,7 +105,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
     <Box pt={4} className={classes.root}>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={12} className={classes.gradientRed}  container
+          <Grid item xs={12} className={classes.gradientGreen}  container
                 direction="row">
             <IconButton size="medium" onClick={navBack}>
                 <ArrowBackIosIcon fontSize="inherit" />
