@@ -101,6 +101,20 @@ const HomePage: React.FC<HomePageProps> = ({ history }) => {
                 </Typography>
                 </Grid>
               </Link>
+            <Link component={RouterLink} to="/mg1e">
+              <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+              >
+                <Avatar className={classes.yellowAvatar}>
+                  <Icon>view_agenda</Icon>
+                </Avatar>
+                <Typography className={classes.subtitles}  gutterBottom>
+                  Modelo M/G/1 - Ek
+                </Typography>
+              </Grid>
+            </Link>
         </CardContent>
         </Card>
         </div>
