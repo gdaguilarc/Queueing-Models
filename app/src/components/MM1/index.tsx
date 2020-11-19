@@ -139,18 +139,6 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   value={lambda}
                   onChange={(e) => handleChange(e.target.value, LAMBDA)}
                 />
-              </Grid>
-              <Grid item xs={6} className={classes.myPadding}>
-                <TextField
-                  label="Miu"
-                  variant="outlined"
-                  type="number"
-                  className={classes.textfield}
-                  value={miu}
-                  onChange={(e) => handleChange(e.target.value, MIU)}
-                />
-              </Grid>
-              <Grid item xs={6} className={classes.myPadding}>
                 <TextField
                   label="N"
                   variant="outlined"
@@ -159,18 +147,6 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   value={n}
                   onChange={(e) => handleChange(e.target.value, N)}
                 />
-              </Grid>{" "}
-              <Grid item xs={6} className={classes.myPadding}>
-                <TextField
-                  label="CW"
-                  variant="outlined"
-                  type="number"
-                  className={classes.textfield}
-                  value={cw}
-                  onChange={(e) => handleChange(e.target.value, CW)}
-                />
-              </Grid>{" "}
-              <Grid item xs={6} className={classes.myPadding}>
                 <TextField
                   label="CS"
                   variant="outlined"
@@ -181,6 +157,22 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                 />
               </Grid>
               <Grid item xs={6} className={classes.myPadding}>
+                <TextField
+                  label="Miu"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={miu}
+                  onChange={(e) => handleChange(e.target.value, MIU)}
+                />
+                <TextField
+                  label="CW"
+                  variant="outlined"
+                  type="number"
+                  className={classes.textfield}
+                  value={cw}
+                  onChange={(e) => handleChange(e.target.value, CW)}
+                />
                 <Fab
                   variant="extended"
                   onClick={handleCalculate}
@@ -189,6 +181,7 @@ const ServerOne: React.FC<ServerOneProps> = ({ history }) => {
                   Calcular
                 </Fab>
               </Grid>
+
               <Grid item xs={12} container>
                 <List className={classes.root}>
                   <ListItem>
