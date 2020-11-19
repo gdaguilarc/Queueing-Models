@@ -101,6 +101,7 @@ const HomePage: React.FC<HomePageProps> = ({ history }) => {
                 </Typography>
                 </Grid>
               </Link>
+            <Divider className={classes.dividersmall} />
             <Link component={RouterLink} to="/mg1e">
               <Grid
                   container

@@ -25,7 +25,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Icon from '@material-ui/core/Icon';
 
-import MG1 from "../../core/classes/MG1";
+import MG1 from "../../core/classes/MG1E";
 
 const LAMBDA = "LAMBDA";
 const MIU = "MIU";
@@ -84,14 +84,14 @@ const ServerFive: React.FC<ServerOneProps> = ({ history }) => {
   };
 
   const handleCalculate = () => {
-    const sim: MG1 = new MG1(lambda, miu, K);
+    const sim: MG1 = new MG1(lambda, miu, k);
     const res = sim.calculateVars();
     setState(res);
     setItems(getHistory(sim, n));
   };
 
   const handleCostCalculation = () => {
-    const sim: MG1 = new MG1(lambda, miu, dev);
+    const sim: MG1 = new MG1(lambda, miu, k);
     const totalCost = sim.getTotalCost(cw, cs);
     setState({
       ...state,
