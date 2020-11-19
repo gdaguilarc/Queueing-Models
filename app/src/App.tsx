@@ -7,6 +7,7 @@ import ServerOne from './components/MM1'
 import ServerK from './components/MMsK'
 import MG1 from "./components/MG1";
 import ServerS from './components/MMs'
+import MG1E from "./components/MG1_E";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/mmk" component={ServerK} />
         <Route exact path="/mms" component={ServerS} />
         <Route exact path="/mg1" component={MG1} />
+        <Route exact path="/mg1e" component={MG1E} />
       </Switch>
     </HashRouter>
   );
